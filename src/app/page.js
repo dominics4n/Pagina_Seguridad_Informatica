@@ -1,6 +1,5 @@
 'use client';
 import Image from "next/image";
-import { getcookies } from "../credenciales";
 
 export default function Home() {
   return (
@@ -12,6 +11,7 @@ export default function Home() {
           width={180}
           height={38}
           priority
+          unoptimized
         />
         <h2>Crear Página Web</h2>
         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">

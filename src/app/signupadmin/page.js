@@ -1,14 +1,14 @@
 'use client';
 
 import { hashwrite } from '../encrypcosas.js';
-import { postsignin } from '../../credenciales.js'
+import { retorno } from '../../credenciales.js'
 
 export async function nuevoregistro(rawdata){
     const h2objetivo = document.getElementById('signupconfirmacion');
     let signin = await hashwrite(rawdata);
     if(signin){
         h2objetivo.innerText = "Registro Exitoso";
-        postsignin();
+        retorno();
     }
     else{
         h2objetivo.innerText = "El usuario ya existe";

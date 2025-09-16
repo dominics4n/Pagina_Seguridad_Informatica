@@ -9,14 +9,13 @@ export function middleware(request: NextRequest){
   let rol = "";
   const url = request.nextUrl.clone();
   const jwtoken = request.cookies.get("jwtcookie");
-  console.log(jwtoken);
+  // Revisa si se encontro un token de inicio de sesion
   if(jwtoken){
     let decoded = verifcacionjwt(jwtoken.value);
+    //Si el token fue valido, extrae valor "rol"
     if(decoded){
       rol = decoded["rol"];
-      console.log("hola mi rol en jwt es" + decoded["rol"]);
     }
-    console.log("hola soy jwt en middleware" + JSON.stringify(decoded));
   }
   
   if(url.pathname === '/'){
@@ -76,5 +75,6 @@ export function middleware(request: NextRequest){
 }
 
 export const config = {
+  // Permite realizar las acciones de desencriptado dentro del middleware
   runtime: 'nodejs',
 };

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 export function verifcacionjwt(token){
     try {
-        console.log("me llamaron a verificar");
+        //Intenta verificar el token y regresar JSON de contenido
         return jwt.verify(token, process.env.JWT_KEY);
 
     } catch (error) {

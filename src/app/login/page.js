@@ -3,7 +3,7 @@
 import { hashcompare } from '../encrypcosas.js';
 import { esperafuncional } from '../encrypcosas.js';
 import { generateAccessJWT } from '../encrypcosas.js';
-import { postlogin } from '../../credenciales.js';
+import { retorno } from '../../credenciales.js';
 import { getcookies } from '../../credenciales.js';
 import { eatcookies } from '../../credenciales.js';
 
@@ -11,22 +11,19 @@ let pruebasss = "Hola";
 let token = "papu";
 
 export async function conflog(rawdata){
-    console.log("hola soy token : " + token);
     const h2objetivo = document.getElementById('registroconfirmacion');
+    //llama funcion de validacion
     await hashcompare(rawdata);
     let logeado = await esperafuncional();
-    console.log(logeado);
+    // Si se valido con exito
     if(logeado){
-        token = await generateAccessJWT(rawdata)
+        await generateAccessJWT(rawdata)
         h2objetivo.innerText = "Sesion iniciada";
-        console.log("hola soy token : " + token);
-        await postlogin(token);
+        await retorno();
     }
     else{
         h2objetivo.innerText = "Usuario o Password incorrectos";
     }
-    console.log(pruebasss);
-    console.log("hola soy token : " + token);
 }
 
 export default function Home() {

@@ -6,13 +6,12 @@ import jwt from 'jsonwebtoken';
 
 
 export async function getcookies() {
-    console.log("hola soy cookis");
-    let verificacion
-    let tokenfinal
+    //Recupera todas las cookies
     const cookieStore = await cookies();
+    //Busca cookie que contiene el token
     let jwtoken = cookieStore.get('jwtcookie');
+    //Si lo encuentra, regresa valor del token
     if(jwtoken){
-        console.log("hola soy tokeb" + JSON.stringify(jwtoken.value));
         return(jwtoken.value);
     }
     return(false);
@@ -20,26 +19,16 @@ export async function getcookies() {
 
 export async function eatcookies() {
     const cookieStore = await cookies()
+    //Busca cookie que contiene el token
     const hasCookie = cookieStore.has('jwtcookie')
+    //Si la encuentra, borra a la cookie
     if(hasCookie){
-        console.log("voy a comer galletas " + hasCookie);
         cookieStore.delete('jwtcookie');
     }
-    let url = ('/');
-    console.log("hola soy url" + url);
-    redirect(url, RedirectType.push);
+    retorno();
 }
-
-export async function postlogin(token){
-    let tokenraw = await getcookies();
-
+//regresa a la pagina principal
+export async function retorno(){
     let url = ('/');
-    console.log("hola soy url" + url);
-    redirect(url, RedirectType.push);
-}
-
-export async function postsignin(){
-    let url = ('/');
-    console.log("hola soy url" + url);
     redirect(url, RedirectType.push);
 }

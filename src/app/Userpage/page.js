@@ -3,7 +3,7 @@ import Image from "next/image";
 import { eatcookies } from "../../credenciales";
 
 export function botonlog(){
-    console.log("adios");
+    // console.log("adios");
     eatcookies();
 }
 
@@ -17,6 +17,7 @@ export default function Home() {
           width={180}
           height={38}
           priority
+          unoptimized
         />
         <h2>Usuario</h2>
         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
