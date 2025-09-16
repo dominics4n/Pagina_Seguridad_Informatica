@@ -4,8 +4,15 @@ import { hashwrite } from '../encrypcosas.js';
 import { postsignin } from '../../credenciales.js'
 
 export async function nuevoregistro(rawdata){
-    await hashwrite(rawdata);
-    postsignin();
+    const h2objetivo = document.getElementById('signupconfirmacion');
+    let signin = await hashwrite(rawdata);
+    if(signin){
+        h2objetivo.innerText = "Registro Exitoso";
+        postsignin();
+    }
+    else{
+        h2objetivo.innerText = "El usuario ya existe";
+    }
 }
 
 export default function Home() {
@@ -82,7 +89,7 @@ export default function Home() {
                     </div>
 
                     <div >
-                        <h2 id='registroconfirmacion' className="text-base/7 font-semibold text-white">
+                        <h2 id='signupconfirmacion' className="text-base/7 font-semibold text-white">
                         
                         </h2>
                     </div>

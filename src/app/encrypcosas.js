@@ -9,26 +9,37 @@ const secretos = process.env.JWT_KEY;
 
 //Hasheo pre nuevo usuario
 export async function hashwrite(rawformdata) {
-    const bcrypt = require('bcrypt');
-    const saltRounds = 10;
-    //Plain Password del form
-    let plainpassword = rawformdata.get("password");
-    let rol = false;
-    if(rawformdata.get("Admin")){
-        rol = true;
-    }
-    console.log("Password sin hash es: " + plainpassword)
-    //Hasheofuncion
-    bcrypt.hash(plainpassword, saltRounds, function(err, hash){
-        //Objeto User por subir a DB
-        let userdata = {
-            Username: rawformdata.get("username"),
-            Password: hash,
-            Admin: rol,
+    let existe = await CheckUser(rawformdata.get("username"));
+    console.log(existe)
+    if(!existe){
+
+        const bcrypt = require('bcrypt');
+        const saltRounds = 10;
+        //Plain Password del form
+        let plainpassword = rawformdata.get("password");
+        let rol = false;
+        let userdata;
+        if(rawformdata.get("Admin")){
+            rol = true;
         }
-        //Llama funcion de escritura a DB
-        NewUser(userdata);
-    });
+        console.log("Password sin hash es: " + plainpassword)
+        //Hasheofuncion
+        bcrypt.hash(plainpassword, saltRounds, function(err, hash){
+            //Objeto User por subir a DB
+                userdata = {
+                Username: rawformdata.get("username"),
+                Password: hash,
+                Admin: rol,
+            }
+            console.log("userdata dentro "+userdata);
+            //Llama funcion de escritura a DB
+            NewUser(userdata);
+        });
+        return(true);
+    }
+    else{
+        return(false);
+    }
     
 }
 let validacion;
@@ -73,9 +84,9 @@ export async function generateAccessJWT(dataforms){
     };
     console.log("hola soy "+ dataforms.get("username") + " y mi admin es " + roles)
     /* Sign token */
-    let jwtoken = jwt.sign(payload, secretos, {expiresIn: '1m',});
+    let jwtoken = jwt.sign(payload, secretos, {expiresIn: '656m',});
     const cookieStore = await cookies();
-    cookieStore.set('jwtcookie', jwtoken, {maxAge: 3000});
+    cookieStore.set('jwtcookie', jwtoken, {maxAge: 39360});
     return(jwtoken);
     
 }
