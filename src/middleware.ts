@@ -34,7 +34,7 @@ export function middleware(request: NextRequest){
   }
 
   if(url.pathname === '/Adminpage'){
-    if(rol = "admin"){
+    if(rol === "admin"){
       return NextResponse.next();
     }
     else{
@@ -54,7 +54,7 @@ export function middleware(request: NextRequest){
   }
 
   if(url.pathname === '/signupadmin'){
-    if(rol == "admin"){
+    if(rol === "admin"){
       return NextResponse.next();
     }
     else{
@@ -64,7 +64,7 @@ export function middleware(request: NextRequest){
   }
 
   if(url.pathname === '/signup'){
-    if(rol == "admin"){
+    if(rol === "admin"){
       url.pathname = '/signupadmin';
       return NextResponse.redirect(url);
     }
