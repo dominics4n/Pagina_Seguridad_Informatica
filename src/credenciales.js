@@ -20,12 +20,12 @@ export async function getcookies() {
 export async function eatcookies() {
     const cookieStore = await cookies()
     //Busca cookie que contiene el token
-    const hasCookie = cookieStore.has('jwtcookie')
+    const hasCookie = cookieStore.has('jwtcookie');
     //Si la encuentra, borra a la cookie
     if(hasCookie){
         cookieStore.delete('jwtcookie');
     }
-    retorno();
+    await retorno();
 }
 //regresa a la pagina principal
 export async function retorno(){
