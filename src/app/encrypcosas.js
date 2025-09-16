@@ -3,8 +3,7 @@
 import { NewUser } from './mongoActions.js';
 import { CheckUser } from './mongoActions.js';
 import jwt from 'jsonwebtoken';
-import { cookies } from 'next/headers'
-
+import { cookies } from 'next/headers';
 
 const secretos = process.env.JWT_KEY;
 
@@ -66,7 +65,6 @@ export async function esperafuncional(){
     return(validacion);
 }
 
-
 export async function generateAccessJWT(dataforms){
     const payload = 
     {
@@ -75,9 +73,9 @@ export async function generateAccessJWT(dataforms){
     };
     console.log("hola soy "+ dataforms.get("username") + " y mi admin es " + roles)
     /* Sign token */
-    let jwtoken = jwt.sign(payload, secretos, {expiresIn: '656m',});
+    let jwtoken = jwt.sign(payload, secretos, {expiresIn: '1m',});
     const cookieStore = await cookies();
-    cookieStore.set('jwtoken', payload.rol);
+    cookieStore.set('jwtcookie', jwtoken, {maxAge: 3000});
     return(jwtoken);
     
 }

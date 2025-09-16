@@ -10,7 +10,7 @@ export async function getcookies() {
     let verificacion
     let tokenfinal
     const cookieStore = await cookies();
-    let jwtoken = cookieStore.get('jwtoken');
+    let jwtoken = cookieStore.get('jwtcookie');
     if(jwtoken){
         console.log("hola soy tokeb" + JSON.stringify(jwtoken.value));
         return(jwtoken.value);
@@ -19,7 +19,12 @@ export async function getcookies() {
 }
 
 export async function eatcookies() {
-    (await cookies()).delete('jwtoken')
+    const cookieStore = await cookies()
+    const hasCookie = cookieStore.has('jwtcookie')
+    if(hasCookie){
+        console.log("voy a comer galletas " + hasCookie);
+        cookieStore.delete('jwtcookie');
+    }
     let url = ('/');
     console.log("hola soy url" + url);
     redirect(url, RedirectType.push);
