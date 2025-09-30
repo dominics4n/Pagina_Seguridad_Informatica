@@ -5,13 +5,19 @@ import { hashwrite } from '../encrypcosas.js';
 import { retorno } from '../../credenciales.js'
 
 export async function nuevoregistro(rawdata){
+    console.log("h2 objetivo");
     const h2objetivo = document.getElementById('signupconfirmacion');
+    console.log("llamo hashwrite");
     let signin = await hashwrite(rawdata);
+    console.log("te registre?");
     if(signin){
+        console.log("estas registrado");
         h2objetivo.innerText = "Registro Exitoso";
-        retorno();
+        console.log("llamo a retorno");
+        await retorno();
     }
     else{
+        console.log("no te registre lol");
         h2objetivo.innerText = "El usuario ya existe";
     }
 }

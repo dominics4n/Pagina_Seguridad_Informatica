@@ -3,7 +3,7 @@ import Image from "next/image";
 import { eatcookies } from "../../credenciales";
 
 export function botonlog(){
-    // console.log("adios");
+    console.log("adios");
     eatcookies();
 }
 

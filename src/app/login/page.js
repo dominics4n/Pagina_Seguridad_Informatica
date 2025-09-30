@@ -11,17 +11,27 @@ let pruebasss = "Hola";
 let token = "papu";
 
 export async function conflog(rawdata){
+    console.log("entre en conflog");
+    console.log("const h2objetivo");
     const h2objetivo = document.getElementById('registroconfirmacion');
     //llama funcion de validacion
+    console.log("llamo a hashcompare");
     await hashcompare(rawdata);
+    console.log("llamo a espera funcional");
     let logeado = await esperafuncional();
     // Si se valido con exito
+    console.log("reviso si estas log");
     if(logeado){
+        console.log("estas logeado");
+        console.log("genero JWT");
         await generateAccessJWT(rawdata)
+        console.log("cambio h2objetivo");
         h2objetivo.innerText = "Sesion iniciada";
+        console.log("regreso retorno");
         await retorno();
     }
     else{
+        console.log("nologeaste");
         h2objetivo.innerText = "Usuario o Password incorrectos";
     }
 }
