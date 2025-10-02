@@ -8,8 +8,8 @@ export default function Home() {
         <Image
           src="/harudance.gif"
           alt="harudance"
-          width={180}
-          height={38}
+          width={200}
+          height={400}
           priority
           unoptimized
         />

@@ -1,30 +1,5 @@
 'use client';
-
-import { hashcompare } from '../encrypcosas.js';
-import { esperafuncional } from '../encrypcosas.js';
-import { generateAccessJWT } from '../encrypcosas.js';
-import { retorno } from '../../credenciales.js';
-import { getcookies } from '../../credenciales.js';
-import { eatcookies } from '../../credenciales.js';
-
-let pruebasss = "Hola";
-let token = "papu";
-
-export async function conflog(rawdata){
-    const h2objetivo = document.getElementById('registroconfirmacion');
-    //llama funcion de validacion
-    await hashcompare(rawdata);
-    let logeado = await esperafuncional();
-    // Si se valido con exito
-    if(logeado){
-        await generateAccessJWT(rawdata)
-        h2objetivo.innerText = "Sesion iniciada";
-        await retorno();
-    }
-    else{
-        h2objetivo.innerText = "Usuario o Password incorrectos";
-    }
-}
+import{ conflog } from "../FormsActions";
 
 export default function Home() {
     return (
@@ -45,7 +20,6 @@ export default function Home() {
                                 id="Username"
                                 name="username"
                                 type="text"
-                                autoComplete="given-name"
                                 required
                                 className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                                 />
@@ -60,8 +34,9 @@ export default function Home() {
                                 <input
                                 id="Password"
                                 name="password"
-                                type="text"
-                                autoComplete="family-name"
+                                type="password"
+                                pattern="(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[0-9])(?=\S*[^a-zA-Z0-9\s])\S{8,}"
+                                title="Debe contener Mayusculas, minusculas, numeros y caracteres especiales, al menos 8 caracteres"
                                 required
                                 className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                                 />

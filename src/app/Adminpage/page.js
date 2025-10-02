@@ -14,8 +14,8 @@ export default function Home() {
         <Image
           src="/mikudance.gif"
           alt="mikudance"
-          width={180}
-          height={38}
+          width={275}
+          height={250}
           priority
           unoptimized
         />

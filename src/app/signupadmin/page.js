@@ -1,19 +1,6 @@
 'use client';
 
-import { hashwrite } from '../encrypcosas.js';
-import { retorno } from '../../credenciales.js'
-
-export async function nuevoregistro(rawdata){
-    const h2objetivo = document.getElementById('signupconfirmacion');
-    let signin = await hashwrite(rawdata);
-    if(signin){
-        h2objetivo.innerText = "Registro Exitoso";
-        retorno();
-    }
-    else{
-        h2objetivo.innerText = "El usuario ya existe";
-    }
-}
+import { nuevoregistro } from '../FormsActions.js';
 
 export default function Home() {
     return (
@@ -34,7 +21,6 @@ export default function Home() {
                                 id="Username"
                                 name="username"
                                 type="text"
-                                autoComplete="given-name"
                                 required
                                 className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                                 />
@@ -50,7 +36,8 @@ export default function Home() {
                                 id="Password"
                                 name="password"
                                 type="text"
-                                autoComplete="family-name"
+                                pattern="(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[0-9])(?=\S*[^a-zA-Z0-9\s])\S{8,}"
+                                title="Debe contener Mayusculas, minusculas, numeros y caracteres especiales, al menos 8 caracteres"
                                 required
                                 className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                                 />

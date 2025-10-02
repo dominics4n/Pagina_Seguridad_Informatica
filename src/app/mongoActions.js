@@ -13,7 +13,7 @@ export async function NewUser(formdata) {
     const collection = database.collection(process.env.COLLECTIONNAME);
     try {
         //inserta los datos a la DB
-        const insertManyResult = await collection.insertOne(formdata);
+        const NuevoUsuario = await collection.insertOne(formdata);
     } catch (err) {
         console.error(`Something went wrong trying to insert the new documents: ${err}\n`);
     }
@@ -29,14 +29,14 @@ export async function CheckUser(formdata) {
     const findOneQuery = { Username: formdata };
     try {
       //Busca al nombre de usuario en la DB
-      const findOneResult = await collection.findOne(findOneQuery);
-      if (findOneResult === null) {
+      const BuscaUsuario = await collection.findOne(findOneQuery);
+      if (BuscaUsuario === null) {
         // El usuario no existe (resultado deseado durante registro)
         return (false)
       } 
       else {
         // El usuario existe (resultado deseado durante inicio de sesion) 
-        return (findOneResult)
+        return (BuscaUsuario)
       }
     } catch (err) {
       console.error(`Something went wrong trying to find one document: ${err}\n`);

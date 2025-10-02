@@ -14,8 +14,8 @@ export default function Home() {
         <Image
           src="/mikuleek.gif"
           alt="mikuleek"
-          width={180}
-          height={38}
+          width={275}
+          height={200}
           priority
           unoptimized
         />
