@@ -3,17 +3,14 @@
 const { MongoClient } = require("mongodb");
 
 //String de conexion, nombre de base de datos y coleccion
-const uri =
-    "mongodb+srv://dominics4n:AlvvaysVVaiting@alvvays.jr2y0ln.mongodb.net/?retryWrites=true&w=majority&appName=Alvvays";
-const dbName = "WhenLightningStrikes";
-const collectionName = "users";
+
 
 export async function NewUser(formdata) {
 
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.URI);
     await client.connect();
-    const database = client.db(dbName);
-    const collection = database.collection(collectionName);
+    const database = client.db(process.env.DBNAME);
+    const collection = database.collection(process.env.COLLECTIONNAME);
     try {
         //inserta los datos a la DB
         const insertManyResult = await collection.insertOne(formdata);
@@ -25,10 +22,10 @@ export async function NewUser(formdata) {
 
 export async function CheckUser(formdata) {
 
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.URI);
     await client.connect();
-    const database = client.db(dbName);
-    const collection = database.collection(collectionName);
+    const database = client.db(process.env.DBNAME);
+    const collection = database.collection(process.env.COLLECTIONNAME);
     const findOneQuery = { Username: formdata };
     try {
       //Busca al nombre de usuario en la DB
